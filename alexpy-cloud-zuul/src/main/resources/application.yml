@@ -1,0 +1,108 @@
+server:
+  port: 8081
+
+eureka:
+  client:
+    # 是否注册到Eureka
+    register-with-eureka: false
+    # 是否从Eureka拉取实例
+    fetchRegistry: true
+    # 拉取实例间隔 单位:秒
+    registryFetchIntervalSeconds: 3
+    serviceUrl:
+      defaultZone: http://localhost:8791/eureka
+  instance:
+    hostname: localhost
+
+spring:
+  environment: dev
+  application:
+    name: ZUUL
+  redis:
+    database: 1
+    host: localhost
+    port: 6379
+    password: 123456
+    lettuce:
+      pool:
+        max-active: 8
+        min-idle: 0
+        max-idle: 8
+        max-wait: 10000ms
+      shutdown-timeout: 100ms
+
+zuul:
+  SendErrorFilter:
+    error:
+      disable: true
+  host:
+    # 默认2000
+    connect-timeout-millis: 5000
+    # 默认10000
+    socket-timeout-millis: 5000
+  # 配置过滤敏感的请求头信息，设置为空就不会过滤
+  sensitive-headers: Cookie,Set-Cookie,Authorization
+
+  ignored-patterns: /**/internal/**
+  #添加代理头
+  add-proxy-headers: true
+  prefix: /
+  routes:
+    service-coolpay:
+      path: /alexpy/**
+      service-id: demo
+
+# Hystrix监控
+# 查看路由信息
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+        exclude: 'env,beans'
+  metrics:
+    tags:
+      job: 'zuul'
+
+# 负载均衡
+ribbon:
+  # 对所有操作请求都进行重试,默认false
+  OkToRetryOnAllOperations: false
+  # ribbon请求连接的超时时间，默认值2000
+  ConnectTimeout: 2000
+  # 负载均衡超时时间，默认值5000
+  ReadTimeout: 3000
+  # 对当前实例的重试次数，默认0
+  MaxAutoRetries: 0
+  # 对切换实例的重试次数，默认1
+  MaxAutoRetriesNextServer: 1
+
+# 容错限流
+hystrix:
+  threadpool:
+    # hystrix线程池 默认 10
+    default:
+      coreSize: 10
+  command:
+    # default全局有效, service id 指定应用有效
+    default:
+      execution:
+        timeout:
+          # 如果enabled设置为false 则请求超时交给ribbon控制,为true,则超时作为熔断根据
+          enabled: true
+        isolation:
+          thread:
+            # 断路器超时时间 默认 1000ms 需要大于Ribbon的总时间
+            timeoutInMilliseconds: 10000
+
+logging:
+  config: classpath:logback-spring.xml
+  level:
+    cn.alexpy.zuul: info
+    com:
+      netflix:
+        eureka: warn
+        discovery: warn
+
+# 缓存超时 单位:秒
+cacheTimeout: 15

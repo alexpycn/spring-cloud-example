@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.5.RELEASE</version>
+    </parent>
+
+    <groupId>cn.alexpy</groupId>
+    <artifactId>alexpy-cloud</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+    <properties>
+        <!-- 环境配置 -->
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <!-- 统一的依赖管理 -->
+        <apache.commons-lang3.version>3.9</apache.commons-lang3.version>
+        <apache.commons-lang.version>2.6</apache.commons-lang.version>
+        <apache.httpclient.version>4.5.10</apache.httpclient.version>
+        <google.gson.version>2.8.6</google.gson.version>
+        <alibaba.fastjson.version>1.2.62</alibaba.fastjson.version>
+        <mybatis-spring.version>2.1.1</mybatis-spring.version>
+        <mysql.version>8.0.20</mysql.version>
+        <druid.version>1.1.22</druid.version>
+        <mapper.starter.version>2.1.5</mapper.starter.version>
+        <pagehelper.starter.version>1.2.13</pagehelper.starter.version>
+        <pagehelper.version>5.1.11</pagehelper.version>
+        <poi.version>3.12</poi.version>
+        <jedis.version>2.9.0</jedis.version>
+        <slf4j.version>1.7.25</slf4j.version>
+        <lombok.version>1.18.12</lombok.version>
+        <shiro-spring.version>1.4.2</shiro-spring.version>
+        <shiro-redis.version>3.2.3</shiro-redis.version>
+        <java-emoji.version>1.0.0</java-emoji.version>
+        <jaxb.version>2.3.1</jaxb.version>
+        <javax.activation.version>1.1.1</javax.activation.version>
+        <mybatis.plus.version>3.2.0</mybatis.plus.version>
+        <swagger.version>2.9.2</swagger.version>
+        <freemarker.version>2.3.28</freemarker.version>
+        <dynamic-datasource.version>2.5.7</dynamic-datasource.version>
+        <p6spy.version>3.8.1</p6spy.version>
+        <thymeleaf-extras-shiro.version>2.0.0</thymeleaf-extras-shiro.version>
+        <commons-io.version>2.6</commons-io.version>
+        <guava.version>28.2-jre</guava.version>
+        <ExcelKit.version>2.0.72</ExcelKit.version>
+        <easy-captcha.version>1.6.2</easy-captcha.version>
+        <jsoup.version>1.12.1</jsoup.version>
+        <xml-apis.version>1.4.01</xml-apis.version>
+        <!--IP定位-->
+        <ip2region.version>1.7.2</ip2region.version>
+        <!--Spring-->
+        <spring-cloud.version>Hoxton.RELEASE</spring-cloud.version>
+        <spring-boot.version>2.2.5.RELEASE</spring-boot.version>
+        <!-- alexpy -->
+        <alexpy-cloud-test-version>1.0.0.RELEASE</alexpy-cloud-test-version>
+        <alexpy-cloud-common-version>1.0.0.RELEASE</alexpy-cloud-common-version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!--spring cloud-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--spring-boot start-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-logging</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>${spring-boot.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <!--spring-boot end-->
+
+            <!--lombok-->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+            <!--google gson-->
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>${google.gson.version}</version>
+            </dependency>
+            <!--alibaba fastjson-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${alibaba.fastjson.version}</version>
+            </dependency>
+            <!--github pagehelper-->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper</artifactId>
+                <version>${pagehelper.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-autoconfigure</artifactId>
+                <version>${pagehelper.starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${pagehelper.starter.version}</version>
+            </dependency>
+            <!--druid-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+            <!-- swagger2 -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <!--apache lang3 -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${apache.commons-lang3.version}</version>
+            </dependency>
+            <!--apache lang -->
+            <dependency>
+                <groupId>commons-lang</groupId>
+                <artifactId>commons-lang</artifactId>
+                <version>${apache.commons-lang.version}</version>
+            </dependency>
+            <!-- 集成mybatis -->
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis-spring.version}</version>
+            </dependency>
+            <!--图标处理-->
+            <dependency>
+                <groupId>com.github.binarywang</groupId>
+                <artifactId>java-emoji-converter</artifactId>
+                <version>${java-emoji.version}</version>
+            </dependency>
+            <!--commons-io-->
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version>
+            </dependency>
+            <!-- google guava -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+            <!--prometheus-->
+            <dependency>
+                <groupId>io.micrometer</groupId>
+                <artifactId>micrometer-registry-prometheus</artifactId>
+                <version>1.1.15</version>
+            </dependency>
+            <!-- jaxb模块引用 - start -->
+            <dependency>
+                <groupId>javax.xml.bind</groupId>
+                <artifactId>jaxb-api</artifactId>
+                <version>${jaxb.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.xml.bind</groupId>
+                <artifactId>jaxb-impl</artifactId>
+                <version>${jaxb.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.glassfish.jaxb</groupId>
+                <artifactId>jaxb-runtime</artifactId>
+                <version>${jaxb.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.activation</groupId>
+                <artifactId>activation</artifactId>
+                <version>${javax.activation.version}</version>
+            </dependency>
+            <!-- jaxb模块引用 - end -->
+        </dependencies>
+
+    </dependencyManagement>
+
+    <modules>
+        <module>alexpy-cloud-common</module>
+        <module>alexpy-cloud-demo</module>
+        <module>alexpy-cloud-eureka</module>
+        <module>alexpy-cloud-test</module>
+        <module>alexpy-cloud-zuul</module>
+    </modules>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <configuration>
+                        <fork>true</fork>
+                        <finalName>${project.artifactId}</finalName>
+                        <outputDirectory>${session.executionRootDirectory}/dist</outputDirectory>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+</project>

@@ -1,0 +1,27 @@
+server:
+  port: 8020
+
+eureka:
+  client:
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://localhost:8791/eureka/
+  instance:
+    # 把IP注册到Eureka
+    #    preferIpAddress: true
+    instance-id: ${spring.cloud.client.ipaddress}:${server.port}
+    # 间隔多长时间报一次心跳 单位：秒
+    lease-renewal-interval-in-seconds: 3
+    # 间隔多长时间没报心跳剔除服务 单位：秒
+    lease-expiration-duration-in-seconds: 10
+    hostname: localhost
+
+spring:
+  environment: dev
+  application:
+    name: DEMO
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true

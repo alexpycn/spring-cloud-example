@@ -1,0 +1,44 @@
+server:
+  port: 8791
+
+spring:
+  application:
+    name: EUREKA
+
+eureka:
+  # 运行环境
+  environment: dev
+  instance:
+    hostname: localhost
+  server:
+    # 启用自我保护 默认: true
+    enableSelfPreservation: false
+    # 清理无效节点的时间间隔 默认: 1分钟
+    evictionIntervalTimerInMs: 3000
+    # 获取不到集群里对等服务器上的实例时，需要等待的时间，单位为毫秒，默认: 5分钟
+    # 单机模式设置为0
+    waitTimeInMsWhenSyncEmpty: 0
+    # 缓存过期
+    responseCacheAutoExpirationInSeconds: 0
+    # 禁用readOnlyCacheMap
+    useReadOnlyResponseCache: false
+  client:
+    # 将自己注册到自己Eureka Server 默认: true
+    # 单机模式禁用
+    registerWithEureka: false
+    # 从Eureka Server 获取注册信息 默认: true
+    # 单机模式禁用
+    fetchRegistry: false
+    healthcheck:
+      enabled: true
+    service-url:
+      defaultZone: http://localhost:${server.port}/eureka
+
+# 日志配置文件
+logging:
+  config: classpath:logback-spring.xml
+  level:
+    com:
+      netflix:
+        eureka: warn
+        discovery: info
