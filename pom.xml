@@ -46,7 +46,7 @@
         <p6spy.version>3.8.1</p6spy.version>
         <thymeleaf-extras-shiro.version>2.0.0</thymeleaf-extras-shiro.version>
         <commons-io.version>2.6</commons-io.version>
-        <guava.version>28.2-jre</guava.version>
+        <guava.version>29.0-jre</guava.version>
         <ExcelKit.version>2.0.72</ExcelKit.version>
         <easy-captcha.version>1.6.2</easy-captcha.version>
         <jsoup.version>1.12.1</jsoup.version>
